@@ -1,14 +1,85 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Onetrue</title>
-  <%= stylesheet_link_tag    "application" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-
-<%= yield %>
-
-</body>
+  <head>
+    <title><%= content_for?(:title) ? yield(:title) : "One True Queue" %></title>
+    <%= stylesheet_link_tag "application" %>
+		<%= javascript_include_tag "application" %>
+    <%= csrf_meta_tag %>
+    <%= yield(:head) %>
+  </head>
+  <body class="font-family-helvetica">
+		<div id="rt-header-surround">
+			<div id="rt-header-background">
+				<div id="rt-header">
+					<div class="rt-container">
+						<div class="rt-grid-3">
+             	<div class="rt-block">
+               	One True Queue
+							</div>
+						</div> <!-- grid-3 -->
+						<div class="rt-grid-9">
+						  <div class="rt-block menu-block">
+								<div class="rt-menubar">
+					    		<ul class="menutop" >
+					        	<li class="active"><%= link_to "Home", root_url %></li>
+										<% if current_user %>
+										<li><a href="#">Help</a></li>
+										<% end %>
+					          <li><a href="#">Contact</a></li>
+										<% if !current_user %>
+										<li class="signup"><%= link_to "Sign Up", signup_path %></li>
+										<% end %>
+									</ul>
+								</div>
+							</div>
+						</div> <!-- grid-9 -->
+						<div class="clear"></div>
+					</div>
+				</div> <!-- header -->
+			</div>
+			<div id="rt-header-bottom"></div>
+		</div> 
+		<div id="rt-body-background">
+			<div class="rt-container">
+				<div id="submenu">
+					<ul>
+				  	<% if current_user %>
+							<li><a href="#" class="drop_down">Settings</a></li>
+							<li><%= link_to "Sign Out", signout_path %></li>
+						<% else %>
+							<li><%= link_to "Sign In", signin_path %></li>
+						<% end %>
+					</ul>
+					<% if current_user %>
+					<div id="dropmenu">
+					<ul>
+						<li><a href="#">Email/Password</a></li>
+					</ul>
+					<br style='clear: left;' />
+					</div>
+					<% end %>
+				</div>
+				<div class="rt-grid-12">
+					<div class="box3">
+						<div class="rt-block">
+							<div id="container">
+								<% flash.each do |name, msg| %>
+					        <%= content_tag :div, msg, :id => "flash_#{name}" %>
+					      <% end %>
+					      <%= content_tag :h1, yield(:short_title) if show_title? %>
+					      <%= yield %>
+				
+								<%= debug(params) if Rails.env.development? %>
+					    </div> <!-- container -->
+						</div>
+					</div>
+				</div>
+				<div class="clear"></div>
+			</div> <!-- container -->
+		</div> 
+		<div id="footer">
+				<span>© Copyright 2011</span>
+				<p>One True Queue is an integration tool only. We are not responsible for the accuracy of information on Netflix owned websites or the information shared within the service. In addition we are not responsible for any results whatsoever from the use of the service or the information provided. The service and information is to be used at the users own discretion.  We have no affiliation with Netflix.  All trademarks are controlled by their respective owners.</p>
+		</div>
+  </body>
 </html>

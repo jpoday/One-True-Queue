@@ -1,4 +1,10 @@
 Onetrue::Application.routes.draw do
+  get "signout" => "sessions#destroy", :as => "signout"
+  get "signin" => "sessions#new", :as => "signin"
+  get "signup" => "users#new", :as => "signup"
+  resources :users
+  resources :sessions
+  root :to => "pages#home"
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
