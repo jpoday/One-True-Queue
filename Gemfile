@@ -43,7 +43,6 @@ group :development, :test do
 	gem 'database_cleaner', ">= 0.5.2"
 	gem 'selenium-client', ">= 1.2.18"
 	gem 'launchy'
-	gem 'rb-fsevent', :require => false if RUBY_PLATFORM =~ /darwin/i
 	gem 'guard-rspec'
 	gem 'guard-livereload'
 	gem 'guard-cucumber'
