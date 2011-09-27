@@ -39,11 +39,18 @@ group :development, :test do
 	gem 'autotest'
 	gem 'autotest-growl'
 	gem 'autotest-fsevent'
-	gem 'spork', '~> 0.9.0.rc8'
 	gem 'cucumber-rails', ">= 0.7.2"
 	gem 'database_cleaner', ">= 0.5.2"
 	gem 'selenium-client', ">= 1.2.18"
 	gem 'launchy'
+	gem 'rb-fsevent', :require => false if RUBY_PLATFORM =~ /darwin/i
+	gem 'guard-rspec'
+	gem 'guard-livereload'
+	gem 'guard-cucumber'
+	gem 'growl'
+	gem 'growl_notify'
+	gem 'spork', '> 0.9.0.rc'
+	gem 'guard-spork'
 end
 
 group :development do
