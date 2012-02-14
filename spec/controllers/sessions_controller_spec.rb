@@ -11,7 +11,6 @@ describe SessionsController do
         login_user
       end
       it "should deny access" do
-        pending("Need solid no_user method")
         get :new
         response.should redirect_to root_path
       end
@@ -30,12 +29,12 @@ describe SessionsController do
           
       it "should have the right title" do
         get :new
-        response.should have_selector("title", :content => "Sign In")
+        response.body.should have_selector('title', :content => "Sign In")
       end
     
       it "should have a new user form" do
         get :new
-        response.should have_selector("form[method=post]", :action => sessions_path) do |form|
+        response.body.should have_selector("form[method=post]", :action => sessions_path) do |form|
           form.should have_selector("input", :name => "email")
           form.should have_selector("input", :name => "password")
           form.should have_selector("input", :type => "checkbox", :name => "remember_me")
@@ -60,7 +59,6 @@ describe SessionsController do
         login_user
       end
       it "should deny access" do
-        pending("Need solid no_user method")
         post :create
         response.should redirect_to root_path
       end

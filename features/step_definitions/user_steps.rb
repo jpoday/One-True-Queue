@@ -1,14 +1,8 @@
 Given /^that I'm a user$/ do
   @user = Factory(:user)
-  visit signup_path
-  fill_in "Name",                  :with =>  @user.name
-  fill_in "Email",                 :with =>  @user.email
-  fill_in "Password",              :with =>  @user.password
-  fill_in "Password confirmation", :with =>  @user.password_confirmation
-  click_button "Sign Up!"
 end
 
-Given /^that I'm signed in$/ do
+Given /I'm signed in/ do
   visit signin_path
   fill_in "Email",    :with => "user@example.com"
   fill_in "Password", :with => "foobarbaz"
@@ -35,13 +29,6 @@ When /^I don't fill in the user form$/ do
   fill_in "Email",                 :with => ""
   fill_in "Password",              :with => ""
   fill_in "Password confirmation", :with => ""
-end
-
-When /^I sign in$/ do
-  visit signin_path
-  fill_in "Email",    :with => "user@example.com"
-  fill_in "Password", :with => "foobarbaz"
-  click_button "Sign in"
 end
 
 When /^I sign in without filling in the form$/ do

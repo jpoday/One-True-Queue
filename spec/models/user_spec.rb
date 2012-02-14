@@ -14,7 +14,7 @@ describe User do
     User.create!(@attr)
   end
   
-  context "validations" do
+  describe "validations" do
     it "should require a name" do
       no_name_user = User.new(@attr.merge(:name => ""))
       no_name_user.should_not be_valid
@@ -39,6 +39,18 @@ describe User do
       User.create(@attr)
       dup_user = User.new(@attr.merge(:name => "Another"))
       dup_user.should_not be_valid
+    end
+  end
+  
+  describe "associations" do
+    before(:each) do
+      @user = Factory(:user)
+    end
+    
+    describe "tokens" do
+      it "should have a netflix attribute" do
+        @user.should respond_to(:netflix)
+      end
     end
   end
 end

@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-  #before_filter :require_no_user, :except => :destroy
+  before_filter :require_no_user, :except => :destroy
   
   def new
   end

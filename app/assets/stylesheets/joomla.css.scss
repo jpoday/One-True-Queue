@@ -1,7 +1,7 @@
 /* 12 Grid */
 .rt-grid-3,  .rt-grid-9, .rt-grid-12 {display: inline;float: left;position: relative;margin-left: 10px;margin-right: 10px;}
-.rt-container .rt-grid-3 {width: 220px;}
-.rt-container .rt-grid-9 {width: 700px;}
+.rt-container .rt-grid-3 {width: 520px;}
+.rt-container .rt-grid-9 {width: 400px;}
 .rt-container .rt-grid-12 {width: 940px;}
 
 /* Reset */
@@ -195,7 +195,8 @@ ul {list-style-image: none;}
 
 .headerimg {
 	margin-top: -15px; 
-	margin-bottom: -10px;
+	margin-bottom: -22px;
+	margin-left: 5px;
 }
 
 /* Drop Menu */
@@ -399,4 +400,61 @@ ul {list-style-image: none;}
 	padding: 5px;
 	overflow: auto;
 	margin-bottom: 20px;
+}
+
+.tk-bello-pro {
+	color: #000;
+	font: normal 56px/80px bello-pro-n4,bello-pro,sans-serif;
+	text-shadow:
+		-1px -1px 0 #cf2036,
+	     1px -1px 0 #cf2036,
+	     -1px 1px 0 #cf2036,
+	      1px 1px 0 #cf2036,
+		2px 2px 1px #fff;
+	height: 80px;
+}
+
+#box {
+    width: 400px;
+    height: 40px;
+    background: #363835;
+    position: relative;
+	left: 455px;
+	top: -106px;
+    -moz-transform:rotate(-13deg);
+	-webkit-transform: rotate(-13deg);
+	background-image: linear-gradient(left , rgb(204,204,204) 0%, rgb(252,252,252) 10%, rgb(252,252,252) 95%), rgb(204,204,204) 100%;
+	background-image: -o-linear-gradient(left , rgb(204,204,204) 0%, rgb(252,252,252) 10%, rgb(252,252,252) 95%), rgb(204,204,204) 100%;
+	background-image: -moz-linear-gradient(left , rgb(204,204,204) 0%, rgb(252,252,252) 10%, rgb(252,252,252) 95%, rgb(204,204,204) 100%);
+	background-image: -webkit-linear-gradient(left , rgb(204,204,204) 0%, rgb(252,252,252) 10%, rgb(252,252,252) 95%, rgb(204,204,204) 100%);
+	background-image: -ms-linear-gradient(left , rgb(204,204,204) 0%, rgb(252,252,252) 10%, rgb(252,252,252) 95%, rgb(204,204,204) 100%);
+	background-image: -webkit-gradient(
+		linear,
+		left top,
+		right top,
+		color-stop(0, rgb(204,204,204)),
+		color-stop(0.1, rgb(252,252,252)),
+		color-stop(0.95, rgb(252,252,252)),
+		color-stop(1, rgb(204,204,204))
+	);
+}
+
+#box:after, #box:before {
+    display: block;
+    content: "\0020";
+    color: transparent;
+    width: 400px;
+    height: 20px;
+    background: #363835;
+    position: absolute;
+    left: -5px;
+    bottom: -10px;
+    -webkit-transform: rotate(2deg);
+    -moz-transform: rotate(2deg);
+}
+#box:before {
+    bottom: auto;
+    top: -10px;
+    -webkit-transform: rotate(-2deg);
+    -moz-transform: rotate(-2deg);
 }

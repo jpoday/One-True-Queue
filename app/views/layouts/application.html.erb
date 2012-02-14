@@ -6,6 +6,9 @@
 		<%= javascript_include_tag "application" %>
     <%= csrf_meta_tag %>
     <%= yield(:head) %>
+		<script type="text/javascript" src="http://use.typekit.com/znd7dib.js"></script>
+		<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+		<%= favicon_link_tag %>
   </head>
   <body class="font-family-helvetica">
 		<div id="rt-header-surround">
@@ -13,8 +16,8 @@
 				<div id="rt-header">
 					<div class="rt-container">
 						<div class="rt-grid-3">
-             	<div class="rt-block">
-               	One True Queue
+             	<div class="rt-block tk-bello-pro">
+               	One True Queue<%= link_to logo, root_url %><div id="box"></div>
 							</div>
 						</div> <!-- grid-3 -->
 						<div class="rt-grid-9">

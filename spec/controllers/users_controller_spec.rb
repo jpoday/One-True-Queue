@@ -28,12 +28,12 @@ describe UsersController do
           
       it "should have the right title" do
         get :new
-        response.should have_selector("title", :content => "Sign Up")
+        response.body.should have_selector("title", :content => "Sign Up")
       end
     
       it "should have a new user form" do
         get :new
-        response.should have_selector("form[method=post]", :action => users_path) do |form|
+        response.body.should have_selector("form[method=post]", :action => users_path) do |form|
           form.should have_selector("input", :name => "user[name]")
           form.should have_selector("input", :name => "user[email]")
           form.should have_selector("input", :name => "user[password]")
