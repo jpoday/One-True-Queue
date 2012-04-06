@@ -1,0 +1,6 @@
+<h1>Search</h1>
+
+<%= form_tag('http://localhost:9292/search/', :id => "search_form", :method => :get, :remote => true) do |f| %>
+	<%= search_field_tag 'search_query', nil, :placeholder => "Name of Movie or TV Show", :size => 50 %>
+	<%= submit_tag "Search", :id => "search_submit" %>
+<% end %>

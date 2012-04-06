@@ -1,4 +1,5 @@
 Onetrue::Application.routes.draw do
+  get "search" => "pages#search"
   resources :oauth_consumers do
     member do
       get :callback
@@ -6,7 +7,6 @@ Onetrue::Application.routes.draw do
       match 'client/*endpoint' => 'oauth_consumers#client'
     end
   end
-
   get "signout" => "sessions#destroy", :as => "signout"
   get "signin" => "sessions#new", :as => "signin"
   get "signup" => "users#new", :as => "signup"
