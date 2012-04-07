@@ -1,6 +1,18 @@
-<h1>Search</h1>
+<% title "Search" %>
 
-<%= form_tag('http://localhost:9292/search/', :id => "search_form", :method => :get, :remote => true) do |f| %>
-	<%= search_field_tag 'search_query', nil, :placeholder => "Name of Movie or TV Show", :size => 50 %>
-	<%= submit_tag "Search", :id => "search_submit" %>
-<% end %>
+<div class="row-fluid">
+	<%= form_tag('http://localhost:9292/search/', :id => "search_form", :method => :get, :remote => true, :class => "form-search") do |f| %>
+		<%= search_field_tag 'search_query', nil, :placeholder => "Name of Movie or TV Show", :class => "input-medium search-query span4" %>
+		<%= link_to "Search", :id => "search_submit", :class => "btn btn-primary" do %>
+			<i class="icon-search icon-white"></i>
+			Search
+		<% end %>
+	<% end %>
+</div>
+
+<div id="results" class="row-fluid">
+	<div class="span3"><div class="well"><h3>Amazon</h3><div class="result" id="amazon"></div></div></div>
+	<div class="span3"><div class="well"><h3>Hulu</h3><div class="result" id="hulu"></div></div></div>
+	<div class="span3"><div class="well"><h3>iTunes</h3><div class="result" id="itunes"></div></div></div>
+	<div class="span3"><div class="well"><h3>Netflix</h3><div class="result" id="netflix"></div></div></div>
+</div>

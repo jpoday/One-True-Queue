@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   
   attr_accessible :name, :email, :password, :password_confirmation
   
-  validates_presence_of :name, :email
+  validates_presence_of :name, :email, :password, :password_confirmation
   validates_confirmation_of :password
   validates_presence_of :password, :on => :create
   validates_uniqueness_of :email

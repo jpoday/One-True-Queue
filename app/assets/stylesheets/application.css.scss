@@ -1,1 +1,22 @@
+$navbarHeight: 50px;
+
 @import "bootstrap";
+
+body { padding-top: 60px; }
+
+@import "bootstrap-responsive";
+
+.results h3:after {
+	background-image: url(image_path('ajax-loader.gif'));
+}
+
+.navbar .brand {
+	color: #000;
+	font: normal 36px/50px bello-pro-n4,bello-pro,sans-serif;
+	text-shadow:
+		-1px -1px 0 #cf2036,
+     1px -1px 0 #cf2036,
+     -1px 1px 0 #cf2036,
+      1px 1px 0 #cf2036,
+		2px 2px 1px #fff;
+}

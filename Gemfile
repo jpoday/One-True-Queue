@@ -60,3 +60,4 @@ end
 gem 'sorcery'
 gem 'oauth', :git => "git://github.com/jpoday/oauth-ruby"
 gem 'oauth-plugin', '>= 0.4.0.pre1'
+gem 'simple_form'
