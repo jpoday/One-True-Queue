@@ -1,32 +1,34 @@
 <% title "Sign In" %>
 
-<%= form_tag sessions_path, :class => "form-horizontal" do %>
-  <fieldset>
-		<div class="control-group">
-	    <%= label_tag :email, nil, :class => "control-label" %>
-			<div class="controls">
-	    	<%= text_field_tag :email, params[:email] %>
+<div class="row-fluid">
+	<div class="span6">
+		<%= form_tag sessions_path, :class => "form-horizontal" do %>
+  	<fieldset>
+			<div class="control-group">
+		    <%= label_tag :email, nil, :class => "control-label" %>
+				<div class="controls">
+		    	<%= text_field_tag :email, params[:email] %>
+				</div>
 			</div>
-		</div>
-  </fieldset>
-  <fieldset>
-		<div class="control-group">
-	    <%= label_tag :password, nil, :class => "control-label" %>
-			<div class="controls">
-	    	<%= password_field_tag :password %>
+	  </fieldset>
+	  <fieldset>
+			<div class="control-group">
+		    <%= label_tag :password, nil, :class => "control-label" %>
+				<div class="controls">
+		    	<%= password_field_tag :password %>
+				</div>
 			</div>
-		</div>
-  </fieldset>
-  <fieldset>
-		<div class="control-group">
-			<div class="controls">
-				<%= label_tag :remember_me, nil, :class => "checkbox" do %>
-					<%= check_box_tag :remember_me, 1, params[:remember_me] %>Remember me
-				<% end %>
+	  </fieldset>
+	  <fieldset>
+			<div class="control-group">
+				<div class="controls">
+					<%= label_tag :remember_me, nil, :class => "checkbox" do %>
+						<%= check_box_tag :remember_me, 1, params[:remember_me] %>Remember me
+					<% end %>
+				</div>
 			</div>
-		</div>
-  </fieldset>
-  <div class="form-actions"><%= submit_tag "Sign in", :class => "btn btn-primary" %></div>
-<% end %>
-
-
+	  </fieldset>
+	  <div class="form-actions"><%= submit_tag "Sign in", :class => "btn btn-success" %></div>
+		<% end %>
+	</div>
+</div>

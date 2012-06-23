@@ -10,8 +10,10 @@
 	  <%= csrf_meta_tags %>
    	<%= yield(:head) %>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<% if Rails.env.production? %>
 		<script type="text/javascript" src="http://use.typekit.com/znd7dib.js"></script>
 		<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+		<% end %>
   </head>
   <body>
 		<div class="navbar navbar-fixed-top">
@@ -24,7 +26,7 @@
 	        </a>
 	        <%= link_to "One True Queue", root_path, :class => "brand" %>
 	        <div class="nav-collapse">
-	          <ul class="nav">
+	          <ul class="nav pull-right">
 							<li><%= link_to "Search", search_path %></li>
 	            <% if current_user %>
 							<li><a href="#">Help</a></li>
@@ -38,7 +40,7 @@
 	            <li><a href="#">Contact</a></li>
 							<% if !current_user %>
 							<li><%= link_to "Sign In", signin_path %></li>
-							<li class="signup"><%= link_to "Sign Up", signup_path %></li>
+							<li><%= link_to "Sign Up", signup_path %></li>
 							<% else %>
 								<li><%= link_to "Sign Out", signout_path %></li>
 							<% end %>
@@ -48,8 +50,9 @@
 	    </div>
 	  </div>
 
-		<div class="container-fluid">
-			<div class="row-fluid">
+		<div class="container">
+			<% unless flash.empty? %>
+			<div class="row">
 				<div class="span12">
 					<% flash.each do |name, msg| %>
 					  <div class="alert alert-<%= name == :notice ? "success" : "error" %>">
@@ -59,18 +62,17 @@
 					<% end %>
 				</div>
 			</div>
-			
-			<div class="page-header">
-	   		<%= content_tag :h1, yield(:short_title) if show_title? %>
-	    </div>
+			<% end %>
       
+			<div class="row">
       <%= yield %>
-
-			<%= debug(params) if Rails.env.development? %>
-		</div> 
-		<hr>
-		<div class="row-fluid">
-			<div class="span12 center">© Copyright 2012</div>
+			</div>
+			
+			<hr>
+			<div class="row">
+				<%= debug(params) if Rails.env.development? %>
+				<div class="span12 footer">© Copyright 2012</div>
+			</div>
 		</div>
   </body>
 </html>

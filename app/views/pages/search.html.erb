@@ -1,18 +1,110 @@
-<% title "Search" %>
+<div class="theater">
+	<div class="backdrop">
+		<div class="leftcurtain"><%= image_tag("frontcurtain2.jpg") %></div>
+		<div class="rightcurtain"><%= image_tag("frontcurtain2.jpg") %></div>
+		<div id="screen">
+			<%= form_tag('http://localhost:9292/search/', :id => "search_form", :method => :get, :remote => true, :class => "form-search pull-right") do |f| %>
+				<%= search_field_tag 'search_query', nil, :placeholder => "Name of Movie or TV Show", :class => "input-medium search-query span4" %>
+				<%= link_to "Search", :id => "search_submit", :class => "btn btn-primary" do %>
+					<i class="icon-search icon-white"></i>
+					Search
+				<% end %>
+			<% end %>
+			<div style="clear: both;"></div>
+			<div id="best_guess"></div>
+		</div>
+	</div>
+	
+	<div id="column-seating">
+		<div style="clear: both;"></div>
+		<div id="col1"></div>
+		<div id="col2"></div>
+		<div id="col3"></div>
+		<div id="col4"></div>
+		<div style="clear: both;"></div>
+		<script type="text/html" id="amazon_template">
+			<div class="result back shadow row{{n}}">
+				<div class="plate">Amazon</div>
+				<div class="info">
+					<img src="{{image}}">
+					<div class="desc">
+						<h4>{{title}}</h4><br/>
+						{{type}}<br/>
+						{{price}}
+					</div>
+					<div style="clear: both;"></div>
+				</div>
+			</div>
+		</script>
+		<script type="text/html" id="hulu_template">
+			<div class="result back shadow row{{n}}">
+				<div class="plate">Hulu</div>
+				<div class="info">
+					<img src="{{image}}">
+					<div class="desc">
+						<h4>{{title}}</h4><br/>
+						{{type}}<br/>
+						{{details}}
+					</div>
+					<div style="clear: both;"></div>
+				</div>
+			</div>
+		</script>
+		<script type="text/html" id="itunes_template">
+			<div class="result back shadow row{{n}}">
+				<div class="plate">iTunes</div>
+				<div class="info">
+					<img src="{{image}}">
+					<div class="desc">
+						<h4>{{title}}</h4><br/>
+						{{type}}<br/>
+						{{price}}<br/>
+						{{details}}
+					</div>
+					<div style="clear: both;"></div>
+				</div>
+			</div>
+		</script>
+		<script type="text/html" id="netflix_template">
+			<div class="result back shadow row{{n}}">
+				<div class="plate">Netflix</div>
+				<div class="info">
+					<img src="{{image}}">
+					<div class="desc">
+						<h4>{{title}}</h4><br/>
+						{{type}}<br/>
+					</div>
+					<div style="clear: both;"></div>
+				</div>
+			</div>
+		</script>
+		<script type="text/html" id="empty_template">
+			<div class="result back shadow row1">
+				<div class="plate">{{service}}</div>
+				<div class="info">
+					<h4 class="no_data">Not on {{service}}</h4>
+				</div>
+			</div>
+		</script>
+		<script type="text/html" id="best_guess_filler">
+			<div class="image"><img src="{{image}}"></div>
+			<div class="desc">
+				<h2>{{title}}</h2>
+				<p>{{desc}}</p>
+				<div class="links">
+					<ul>
+						<a href="http://amazon.com"><li class="label label-warning">Amazon $1.99</li></a>
+						<a href="http://amazon.com"><li class="label label-success">Hulu</li></a>
+						<a href="http://amazon.com"><li class="label label-info">iTunes $9.99</li></a>
+						<a href="http://amazon.com"><li class="label label-important">Netflix</li></a>
+					</ul>
+				</div>
+			</div>
+			<div class="space"></div>
+		</script>
+	</div>
 
-<div class="row-fluid">
-	<%= form_tag('http://localhost:9292/search/', :id => "search_form", :method => :get, :remote => true, :class => "form-search") do |f| %>
-		<%= search_field_tag 'search_query', nil, :placeholder => "Name of Movie or TV Show", :class => "input-medium search-query span4" %>
-		<%= link_to "Search", :id => "search_submit", :class => "btn btn-primary" do %>
-			<i class="icon-search icon-white"></i>
-			Search
-		<% end %>
-	<% end %>
+	<%= debug(params) if Rails.env.development? %>
+	<div class="footer">© Copyright 2012</div>
 </div>
-
-<div id="results" class="row-fluid">
-	<div class="span3"><div class="well"><h3>Amazon</h3><div class="result" id="amazon"></div></div></div>
-	<div class="span3"><div class="well"><h3>Hulu</h3><div class="result" id="hulu"></div></div></div>
-	<div class="span3"><div class="well"><h3>iTunes</h3><div class="result" id="itunes"></div></div></div>
-	<div class="span3"><div class="well"><h3>Netflix</h3><div class="result" id="netflix"></div></div></div>
-</div>
+<div style="clear: both;"></div>
