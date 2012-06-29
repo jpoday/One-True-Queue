@@ -6,15 +6,29 @@ jQuery ->
 	
 	$("#search_query").keyup (e) ->
 		if e.keyCode == 13
-			clearResults()
-			curtain()
 			search()
 	
 	$("#search_submit")
-		.click(-> clearResults())
-		.click(-> curtain())
 		.click(-> search())
 		
+	search = ->
+		if validate()
+			clearResults()
+			curtain()
+			clearHome()
+			request()
+		else
+			false
+		
+	validate = ->
+		if $("input#search_query")[0].value == ""
+			$("input#search_query")[0].placeholder = ""
+			$(".control-group").addClass("error")
+			$(".help-block").show()
+			false
+		else
+			true
+			
 	clearResults = ->
 		$("#best_guess").empty()
 		$("#col1").empty()
@@ -22,18 +36,25 @@ jQuery ->
 		$("#col3").empty()
 		$("#col4").empty()
 		
+	clearHome = ->
+		$("#search_form").hide()
+		$("#splash").fadeOut(2000)
+		$("#search_form").css("marginTop", "0px")
+		
 	curtain = ->
 		if ($curtainopen == false)
 			$(".leftcurtain").stop().animate({width:'5%'}, 2000 )
 			$(".rightcurtain").stop().animate({width:'5%'},2000 )
+			$(".sign").stop().animate({left: "-20%"}, 1500 )
 			$curtainopen = true
 		else
 			$(".leftcurtain").stop().animate({width:'50%'}, 2000 )
 			$(".rightcurtain").stop().animate({width:'51%'}, 2000 )
+			$(".sign").stop().animate({left: "51%"}, 2500, "swing" )
 			$curtainopen = false
-		return false;
+		false;
 		
-	search = ->
+	request = ->
 		# src = new EventSource($("#search_form").attr('action')+encodeURI($("#search_query").val()));
 		# src.onmessage ->
 		# 	$("#search_form").append("\n" + e.data)
@@ -47,6 +68,7 @@ jQuery ->
 	render = (data) ->
 		$("#best_guess").append Mustache.to_html($('#best_guess_filler').html(), data['BestGuess'])
 		curtain()
+		$("#search_form").fadeIn(2000)
 		$("#best_guess").fadeIn(2000)
 		for result,i in data['Search::Amazon']
 			if i<3

@@ -1,3 +1,30 @@
+@mixin curvedarrow($color,$size,$rotate,$tail_dir) {
+	position: relative; 
+	width: 0; 
+	height: 0; 
+	border-top: $size solid transparent; 
+	border-right: $size solid $color;
+	@include rotate($rotate);
+	&:after {
+		content: ""; 
+		position: absolute; 
+		border: 0 solid transparent;
+		@if $tail_dir == left {	
+			border-top: $size/2 solid $color;
+			border-radius: $size*10 0 0 0;
+			top: -$size*4/3;
+			left: -$size*19/20; }
+		@else {
+			border-bottom: $size/2 solid $color;
+			border-radius: 0 0 0 $size*10; 
+			top: -$size*2;
+			right: -$size*11/10; }
+		width: $size*4/3;
+		height: $size;
+		@include rotate(45deg);
+	}
+}
+
 .theater {
 	background: black;
 	width: 100%;
@@ -20,32 +47,90 @@
 	top: 10px;
 	left: 0px;
 	position: absolute;
-	z-index: 2;
+	z-index: 4;
 }
- .rightcurtain{
+.rightcurtain{
 	width: 5%;
 	height: 430px;
 	right: 0px;
 	top: 10px;
 	position: absolute;
-	z-index: 3;
+	z-index: 2;
 }
 .rightcurtain img, .leftcurtain img{
 	width: 100%;
 	height: 100%;
+}
+.sign {
+	float: left;
+	position: absolute;
+	top: 160px;
+	left: -20%;
+	@include rotate(15deg);
+	z-index: 3;
+	font: normal 24px/36px bello-pro-n4,bello-pro,sans-serif;
+	background: white;
+	border: 5px solid black;
+	@include border-radius(10px);
+	width: 120px;
+	height: 35px;
+	padding: 15px;
+	img {
+		margin-top: 15px;
+		margin-left: -55px;
+		height: 100px;
+	}
 }
 
 #screen {
 	background-color: white;
 	height: 310px;
 	@include border-radius(10px);
-	width: 80%;
+	width: 900px;
 	text-align: center;
 	margin: 0px auto;
 	border: 5px solid black;
 	position: relative;
 	top: 30px;
-	padding: 2%;
+	padding: 20px;
+	#splash {
+		float: left;
+		#bottom_buttons {
+			margin: 30px 0 20px;
+		}
+		#amazonarrow { 
+			float: left;
+			margin: 20px 0 20px 40px;
+			@include curvedarrow(#fba300,30px,10deg,left);
+		}
+		#huluarrow {
+			float: right;
+			margin: 20px 40px 20px 0;
+			@include curvedarrow(#56b250,30px,80deg,right);
+		}
+		#netflixarrow { 
+			float: right;
+			margin: -15px 40px 20px 0;
+			@include curvedarrow(#d3493d,30px,190deg,left);
+		}
+		#itunesarrow { 
+			float: left;
+			margin: -15px 0 20px 40px;
+			@include curvedarrow(#3ca6c7,30px,260deg,right);
+		}
+		#headline {
+			
+		}
+	}
+	#search_form {
+		float: right;
+		margin-top: 115px;
+		.help-block {
+			display: none;
+			text-align: left;
+			padding-left: 65px;
+		}
+	}
 	.image img {
 		background-color: gray;
 		width: 20%;
@@ -71,7 +156,6 @@
 		}
 	}
 	.space {
-		border: 1px solid black;
 		width: 20%;
 		height: 250px;
 		margin-left: 2%;
@@ -80,7 +164,7 @@
 }
 
 #column-seating {
-	width: 1080px;
+	width: 960px;
 	text-align: center;
 	margin: -20px auto 20px;
 }

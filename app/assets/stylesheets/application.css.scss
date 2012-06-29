@@ -14,6 +14,12 @@ body { padding-top: 90px;}
      -1px 1px 0 #cf2036,
       1px 1px 0 #cf2036,
 		2px 2px 1px #fff);
+	.wf-loading {
+		visibility: hidden;
+	}
+	.wf-active {
+		visibility: visible;
+	}
 }
 
 .footer {

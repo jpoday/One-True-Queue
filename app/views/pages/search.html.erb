@@ -2,13 +2,45 @@
 	<div class="backdrop">
 		<div class="leftcurtain"><%= image_tag("frontcurtain2.jpg") %></div>
 		<div class="rightcurtain"><%= image_tag("frontcurtain2.jpg") %></div>
+		<div class="sign">Searching...<%= image_tag("hand.png") %></div>
 		<div id="screen">
-			<%= form_tag('http://localhost:9292/search/', :id => "search_form", :method => :get, :remote => true, :class => "form-search pull-right") do |f| %>
-				<%= search_field_tag 'search_query', nil, :placeholder => "Name of Movie or TV Show", :class => "input-medium search-query span4" %>
-				<%= link_to "Search", :id => "search_submit", :class => "btn btn-primary" do %>
-					<i class="icon-search icon-white"></i>
-					Search
-				<% end %>
+			<div id="splash">
+				<div class="span6">
+					<div id="top_buttons" class="row">
+						<span class="pull-left btn btn-large btn-warning"><b>Amazon</b></span>
+						<div id="amazonarrow"></div>
+						<span class="pull-right btn btn-large btn-success"><b>Hulu</b></span>
+						<div id="huluarrow"></div>
+					</div>
+					<div style="clear: both;"></div>
+					<div id="devices" class="row">
+						<%= image_tag("computer-screen.jpg", :height => 100) %>
+						<%= image_tag("tablet-and-mobile-phone.jpg", :height => 100) %>
+						<%= image_tag("laptop.jpg", :height => 100) %>
+					</div>
+					<div style="clear: both;"></div>
+					<div id="bottom_buttons" class="row">
+						<span class="pull-left btn btn-large btn-info"><b>iTunes</b></span>
+						<div id="itunesarrow"></div>
+						<span class="pull-right btn btn-large btn-danger"><b>Netflix</b></span>
+						<div id="netflixarrow"></div>
+					</div>
+					<div id="headline">
+						<h2>All Your Services, All in One Place</h2>
+						<p>Search and manage all your favorite streaming video from one queue</p>
+					</div>
+				</div>
+			</div>
+			<%= form_tag('http://localhost:9292/search/', :id => "search_form", :method => :get, :remote => true, :class => "form-search") do |f| %>
+				<div class="control-group">
+					<div class="controls">
+						<%= search_field_tag 'search_query', nil, :placeholder => "Name of Movie or TV Show", :class => "input-medium search-query span4" %>
+						<%= link_to "Search", :id => "search_submit", :class => "btn btn-primary" do %>
+							<i class="icon-search icon-white"></i>&nbsp;Search
+						<% end %>
+						<p class="help-block">Please enter a movie or TV show</p>
+					</div>
+				</div>
 			<% end %>
 			<div style="clear: both;"></div>
 			<div id="best_guess"></div>
@@ -93,10 +125,10 @@
 				<p>{{desc}}</p>
 				<div class="links">
 					<ul>
-						<a href="http://amazon.com"><li class="label label-warning">Amazon $1.99</li></a>
-						<a href="http://amazon.com"><li class="label label-success">Hulu</li></a>
-						<a href="http://amazon.com"><li class="label label-info">iTunes $9.99</li></a>
-						<a href="http://amazon.com"><li class="label label-important">Netflix</li></a>
+						<a href="http://amazon.com"><li class="btn btn-warning"><b>Amazon $1.99</b></li></a>
+						<a href="http://amazon.com"><li class="btn btn-success"><b>Hulu</b></li></a>
+						<a href="http://amazon.com"><li class="btn btn-info"><b>iTunes $9.99</b></li></a>
+						<a href="http://amazon.com"><li class="btn btn-danger"><b>Netflix</b></li></a>
 					</ul>
 				</div>
 			</div>
