@@ -3,7 +3,7 @@ $navbarHeight: 70px;
 @import "bootstrap";
 @import "compass";
 
-body { padding-top: 90px;}
+body { padding-top: 120px;}
 
 .navbar .brand {
 	color: #000;
@@ -24,6 +24,10 @@ body { padding-top: 90px;}
 
 .footer {
 	text-align: center;
+}
+
+.clear {
+	clear: both;
 }
 
 @import "pages";

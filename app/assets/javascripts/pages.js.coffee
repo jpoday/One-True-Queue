@@ -30,7 +30,7 @@ jQuery ->
 			true
 			
 	clearResults = ->
-		$("#best_guess").empty()
+		$("#top_result").empty()
 		$("#col1").empty()
 		$("#col2").empty()
 		$("#col3").empty()
@@ -38,7 +38,7 @@ jQuery ->
 		
 	clearHome = ->
 		$("#search_form").hide()
-		$("#splash").fadeOut(2000)
+		$("#splash").hide()
 		$("#search_form").css("marginTop", "0px")
 		
 	curtain = ->
@@ -66,10 +66,10 @@ jQuery ->
 		false
 		
 	render = (data) ->
-		$("#best_guess").append Mustache.to_html($('#best_guess_filler').html(), data['BestGuess'])
+		$("#top_result").append Mustache.to_html($('#top_result_filler').html(), data['TopResult'])
 		curtain()
 		$("#search_form").fadeIn(2000)
-		$("#best_guess").fadeIn(2000)
+		$("#top_result").fadeIn(2000)
 		for result,i in data['Search::Amazon']
 			if i<3
         n = i+1

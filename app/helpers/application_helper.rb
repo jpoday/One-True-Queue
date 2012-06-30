@@ -17,8 +17,4 @@ module ApplicationHelper
   def show_title?
     @show_title
   end
-  
-  def logo
-    logo = image_tag("projector3.png", :size => "120x90", :alt => "One True Queue", :class => "headerimg")
-  end
 end

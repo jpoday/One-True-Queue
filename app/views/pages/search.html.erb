@@ -42,8 +42,8 @@
 					</div>
 				</div>
 			<% end %>
+			<div id="top_result"></div>
 			<div style="clear: both;"></div>
-			<div id="best_guess"></div>
 		</div>
 	</div>
 	
@@ -57,6 +57,7 @@
 		<script type="text/html" id="amazon_template">
 			<div class="result back shadow row{{n}}">
 				<div class="plate">Amazon</div>
+				<a href={{link}}>
 				<div class="info">
 					<img src="{{image}}">
 					<div class="desc">
@@ -66,11 +67,13 @@
 					</div>
 					<div style="clear: both;"></div>
 				</div>
+				</a>
 			</div>
 		</script>
 		<script type="text/html" id="hulu_template">
 			<div class="result back shadow row{{n}}">
 				<div class="plate">Hulu</div>
+				<a href="http://www.hulu.com/watch/{{video_id}}">
 				<div class="info">
 					<img src="{{image}}">
 					<div class="desc">
@@ -80,11 +83,13 @@
 					</div>
 					<div style="clear: both;"></div>
 				</div>
+				</a>
 			</div>
 		</script>
 		<script type="text/html" id="itunes_template">
 			<div class="result back shadow row{{n}}">
 				<div class="plate">iTunes</div>
+				<a href={{link}}>
 				<div class="info">
 					<img src="{{image}}">
 					<div class="desc">
@@ -95,11 +100,13 @@
 					</div>
 					<div style="clear: both;"></div>
 				</div>
+				</a>
 			</div>
 		</script>
 		<script type="text/html" id="netflix_template">
 			<div class="result back shadow row{{n}}">
 				<div class="plate">Netflix</div>
+				<a href={{link}}>
 				<div class="info">
 					<img src="{{image}}">
 					<div class="desc">
@@ -108,6 +115,7 @@
 					</div>
 					<div style="clear: both;"></div>
 				</div>
+				</a>
 			</div>
 		</script>
 		<script type="text/html" id="empty_template">
@@ -118,17 +126,39 @@
 				</div>
 			</div>
 		</script>
-		<script type="text/html" id="best_guess_filler">
+		<script type="text/html" id="error_template">
+			<div class="result back shadow row1">
+				<div class="plate">{{service}}</div>
+				<div class="info">
+					<h4 class="no_data">{{service}} Search Error</h4>
+				</div>
+			</div>
+		</script>
+		<script type="text/html" id="top_result_filler">
+			<div id="burst-8"></div><h3>Top Result</h3>
+			<div style="clear: both;"></div>
 			<div class="image"><img src="{{image}}"></div>
 			<div class="desc">
 				<h2>{{title}}</h2>
 				<p>{{desc}}</p>
 				<div class="links">
 					<ul>
-						<a href="http://amazon.com"><li class="btn btn-warning"><b>Amazon $1.99</b></li></a>
-						<a href="http://amazon.com"><li class="btn btn-success"><b>Hulu</b></li></a>
-						<a href="http://amazon.com"><li class="btn btn-info"><b>iTunes $9.99</b></li></a>
-						<a href="http://amazon.com"><li class="btn btn-danger"><b>Netflix</b></li></a>
+						{{#amazon}}
+						<a href={{link}}><li class="btn btn-warning"><b>Amazon {{price}}</b></li></a>
+						{{/amazon}}
+						{{#hulu}}
+						<a href="http://www.hulu.com/watch/{{video_id}}"><li class="btn btn-success"><b>Hulu</b></li></a>
+						{{/hulu}}
+						{{#itunes}}
+						<a href={{link}}><li class="btn btn-info"><b>iTunes {{price}}</b></li></a>
+						{{/itunes}}
+						{{#netflix}}
+						<a href={{link}}><li class="btn btn-danger">
+							<b>Netflix - 
+							{{#&instant}}Instant{{/&instant}}
+							{{^&instant}}DVD{{/&instant}}
+							</b></li></a>
+						{{/netflix}}
 					</ul>
 				</div>
 			</div>

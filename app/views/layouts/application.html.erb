@@ -64,7 +64,8 @@
 			<% end %>
       
 			<div class="row">
-      <%= yield %>
+				<%= content_tag :h2, yield(:short_title) if show_title? %>
+      	<%= yield %>
 			</div>
 			
 			<hr>
