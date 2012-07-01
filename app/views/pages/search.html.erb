@@ -54,32 +54,20 @@
 		<div id="col3"></div>
 		<div id="col4"></div>
 		<div style="clear: both;"></div>
-		<script type="text/html" id="amazon_template">
+		<script type="text/html" id="result_template">
 			<div class="result back shadow row{{n}}">
-				<div class="plate">Amazon</div>
+				<div class="plate">{{service}}</div>
 				<a href={{link}}>
 				<div class="info">
 					<img src="{{image}}">
 					<div class="desc">
 						<h4>{{title}}</h4><br/>
-						{{type}}<br/>
-						{{price}}
-					</div>
-					<div style="clear: both;"></div>
-				</div>
-				</a>
-			</div>
-		</script>
-		<script type="text/html" id="hulu_template">
-			<div class="result back shadow row{{n}}">
-				<div class="plate">Hulu</div>
-				<a href="http://www.hulu.com/watch/{{video_id}}">
-				<div class="info">
-					<img src="{{image}}">
-					<div class="desc">
-						<h4>{{title}}</h4><br/>
-						{{type}}<br/>
-						{{details}}
+						{{#price}}
+							{{price}}
+						{{/price}}<br/>
+						{{#series}}
+							{{series}}, Episode {{episode}}
+						{{/series}}
 					</div>
 					<div style="clear: both;"></div>
 				</div>

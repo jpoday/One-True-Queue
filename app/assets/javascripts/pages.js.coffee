@@ -76,16 +76,18 @@ jQuery ->
       else
         n = "n"
 			result.n = n
-			$("#col1").append Mustache.to_html($('#amazon_template').html(), result)
+			result.service = "Amazon"
+			$("#col1").append Mustache.to_html($('#result_template').html(), result)
 			$(".result").fadeIn(2000)
-		unless not data['Search::Hulu'].length
+		if data['Search::Hulu'].length
 			for result,i in data['Search::Hulu']
 				if i<3
 	        n = i+1
 	      else
 	        n = "n"
 				result.n = n
-				$("#col2").append Mustache.to_html($('#hulu_template').html(), result)
+				result.service = "Hulu"
+				$("#col2").append Mustache.to_html($('#result_template').html(), result)
 				$(".result").fadeIn(2000)
 		else
 			$("#col2").append Mustache.to_html($('#empty_template').html(), {service: "Hulu"})
@@ -98,7 +100,7 @@ jQuery ->
 			result.n = n
 			$("#col3").append Mustache.to_html($('#itunes_template').html(), result)
 			$(".result").fadeIn(2000)
-		unless data['Search::Netflix'].length == 0
+		if data['Search::Netflix'].length
 			for result,i in data['Search::Netflix']
 				if i<3
 					n = i+1
