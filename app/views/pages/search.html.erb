@@ -43,7 +43,7 @@
 				</div>
 			<% end %>
 			<div id="top_result"></div>
-			<div style="clear: both;"></div>
+			<div id="mixed_results"></div>
 		</div>
 	</div>
 	
@@ -57,14 +57,20 @@
 		<script type="text/html" id="result_template">
 			<div class="result back shadow row{{n}}">
 				<div class="plate">{{service}}</div>
+				{{#failed}}
+				<div class="info">
+					<h4 class="no_data">{{service}} Search Error</h4>
+				</div>
+				{{/failed}}
+				{{^failed}}
 				<a href={{link}}>
 				<div class="info">
 					<img src="{{image}}">
 					<div class="desc">
 						<h4>{{title}}</h4><br/>
 						{{#price}}
-							{{price}}
-						{{/price}}<br/>
+							{{price}}<br/>
+						{{/price}}
 						{{#series}}
 							{{series}}, Episode {{episode}}
 						{{/series}}
@@ -72,23 +78,7 @@
 					<div style="clear: both;"></div>
 				</div>
 				</a>
-			</div>
-		</script>
-		<script type="text/html" id="itunes_template">
-			<div class="result back shadow row{{n}}">
-				<div class="plate">iTunes</div>
-				<a href={{link}}>
-				<div class="info">
-					<img src="{{image}}">
-					<div class="desc">
-						<h4>{{title}}</h4><br/>
-						{{type}}<br/>
-						{{price}}<br/>
-						{{details}}
-					</div>
-					<div style="clear: both;"></div>
-				</div>
-				</a>
+				{{/failed}}
 			</div>
 		</script>
 		<script type="text/html" id="netflix_template">
@@ -114,16 +104,8 @@
 				</div>
 			</div>
 		</script>
-		<script type="text/html" id="error_template">
-			<div class="result back shadow row1">
-				<div class="plate">{{service}}</div>
-				<div class="info">
-					<h4 class="no_data">{{service}} Search Error</h4>
-				</div>
-			</div>
-		</script>
-		<script type="text/html" id="top_result_filler">
-			<div id="burst-8"></div><h3>Top Result</h3>
+		<script type="text/html" id="top_result_template">
+			<div id="burst"></div><h3>Top Result</h3>
 			<div style="clear: both;"></div>
 			<div class="image"><img src="{{image}}"></div>
 			<div class="desc">
@@ -135,7 +117,7 @@
 						<a href={{link}}><li class="btn btn-warning"><b>Amazon {{price}}</b></li></a>
 						{{/amazon}}
 						{{#hulu}}
-						<a href="http://www.hulu.com/watch/{{video_id}}"><li class="btn btn-success"><b>Hulu</b></li></a>
+						<a href={{link}}><li class="btn btn-success"><b>Hulu</b></li></a>
 						{{/hulu}}
 						{{#itunes}}
 						<a href={{link}}><li class="btn btn-info"><b>iTunes {{price}}</b></li></a>
@@ -151,6 +133,44 @@
 				</div>
 			</div>
 			<div class="space"></div>
+		</script>
+		<script type="text/html" id="mixed_results_template">
+			<div id="burst"></div><h3>Top Results</h3>
+			<div style="clear: both;"></div>
+			{{#amazon}}
+			<div class="screen_result">
+				<img src={{image}}>
+				<h4>{{title}}</h4>
+				<a href={{link}}><span class="btn btn-warning"><b>Amazon {{price}}</b></span></a>
+			</div>
+			{{/amazon}}
+			{{#hulu}}
+			<div class="screen_result">
+				<img src={{image}}>
+				<h4>{{title}}</h4>
+				<a href={{link}}><span class="btn btn-success"><b>Hulu S{{series}}E{{episode}}</b></span></a>
+			</div>
+			{{/hulu}}
+			{{#itunes}}
+			<div class="screen_result">
+				<img src={{image}}>
+				<h4>{{title}}</h4>
+				<a href={{link}}><span class="btn btn-info"><b>iTunes S{{series}}E{{episode}} {{price}}</b></span></a>
+			</div>
+			{{/itunes}}
+			{{#netflix}}
+			<div class="screen_result">
+				<img src={{image}}>
+				<h4>{{title}}</h4>
+				<a href={{link}}><span class="btn btn-danger">
+				<b>Netflix - 
+				{{#&instant}}Instant{{/&instant}}
+				{{^&instant}}DVD{{/&instant}}
+				</b></span></a>
+			</div>
+			{{/netflix}}
+			<div style="clear: both;"></div>
+			<p>These results are mixed. You'll probably have better luck searching for a specific season rather than an entire show</p>
 		</script>
 	</div>
 

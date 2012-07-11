@@ -31,6 +31,7 @@ jQuery ->
 			
 	clearResults = ->
 		$("#top_result").empty()
+		$("#mixed_results").empty()
 		$("#col1").empty()
 		$("#col2").empty()
 		$("#col3").empty()
@@ -66,11 +67,19 @@ jQuery ->
 		false
 		
 	render = (data) ->
-		$("#top_result").append Mustache.to_html($('#top_result_filler').html(), data['TopResult'])
-		curtain()
+		if data['TopResult']
+			$("#top_result").append Mustache.to_html($('#top_result_template').html(), data['TopResult'])
+			curtain()
+			$("#top_result").fadeIn(2000)
+		
+		if data['MixedResults']
+			$("#mixed_results").append Mustache.to_html($('#mixed_results_template').html(), data['MixedResults'])
+			curtain()
+			$("#mixed_results").fadeIn(2000)
+				
 		$("#search_form").fadeIn(2000)
-		$("#top_result").fadeIn(2000)
-		for result,i in data['Search::Amazon']
+		
+		for result,i in data['Amazon']
 			if i<3
         n = i+1
       else
@@ -79,8 +88,9 @@ jQuery ->
 			result.service = "Amazon"
 			$("#col1").append Mustache.to_html($('#result_template').html(), result)
 			$(".result").fadeIn(2000)
-		if data['Search::Hulu'].length
-			for result,i in data['Search::Hulu']
+		
+		if data['Hulu'].length
+			for result,i in data['Hulu']
 				if i<3
 	        n = i+1
 	      else
@@ -92,16 +102,19 @@ jQuery ->
 		else
 			$("#col2").append Mustache.to_html($('#empty_template').html(), {service: "Hulu"})
 			$(".result").fadeIn(2000)
-		for result,i in data['Search::Itunes']
+		
+		for result,i in data['Itunes']
 			if i<3
 				n = i+1
 			else
 				n = "n"
 			result.n = n
-			$("#col3").append Mustache.to_html($('#itunes_template').html(), result)
+			result.service = "iTunes"
+			$("#col3").append Mustache.to_html($('#result_template').html(), result)
 			$(".result").fadeIn(2000)
-		if data['Search::Netflix'].length
-			for result,i in data['Search::Netflix']
+		
+		if data['Netflix'].length
+			for result,i in data['Netflix']
 				if i<3
 					n = i+1
 				else
