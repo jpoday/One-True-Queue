@@ -42,6 +42,7 @@ group :development, :test do
 	gem 'guard-spork'
 	gem 'factory_girl_rails'
 	gem 'capybara-webkit'
+	gem 'pry'
 end
 
 group :development do

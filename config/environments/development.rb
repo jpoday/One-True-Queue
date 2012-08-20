@@ -22,6 +22,9 @@ Onetrue::Application.configure do
   # Only use best-standards-support built into browsers
   config.action_dispatch.best_standards_support = :builtin
 
+  # Only use <div class="clear"></div>-standards-support built into browsers
+  #config.action_dispatch.<div class="clear"></div>_standards_support = :builtin
+
   # Do not compress assets
   config.assets.compress = false
 
