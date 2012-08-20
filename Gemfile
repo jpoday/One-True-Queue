@@ -55,7 +55,7 @@ group :test do
   gem 'turn', '< 0.8.3', :require => false
 end
 
-gem 'sorcery'
+gem 'sorcery', '>=0.7.13'
 gem 'oauth', :git => "git://github.com/jpoday/oauth-ruby"
 gem 'oauth-plugin', '>= 0.4.0.pre1'
 gem 'simple_form'
