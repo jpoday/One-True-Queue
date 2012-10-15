@@ -89,7 +89,12 @@
 					<img src="{{image}}">
 					<div class="desc">
 						<h4>{{title}}</h4><br/>
-						{{type}}<br/>
+						{{type}}
+						<ul>
+							{{#instant}}<li>Instant</li>{{/instant}}
+							{{#DVD}}<li>DVD</li>{{/DVD}}
+							{{#Blu-ray}}<li>Blu-ray</li>{{/Blu-ray}}
+						</ul>
 					</div>
 					<div style="clear: both;"></div>
 				</div>
@@ -124,9 +129,10 @@
 						{{/itunes}}
 						{{#netflix}}
 						<a href={{link}}><li class="btn btn-danger">
-							<b>Netflix - 
-							{{#&instant}}Instant{{/&instant}}
-							{{^&instant}}DVD{{/&instant}}
+							<b>Netflix 
+							{{#instant}}| Instant{{/instant}}
+							{{#dvd}}| DVD{{/dvd}}
+							{{#bluray}}| Blu-ray{{/bluray}}
 							</b></li></a>
 						{{/netflix}}
 					</ul>
@@ -163,10 +169,8 @@
 				<img src={{image}}>
 				<h4>{{title}}</h4>
 				<a href={{link}}><span class="btn btn-danger">
-				<b>Netflix - 
-				{{#&instant}}Instant{{/&instant}}
-				{{^&instant}}DVD{{/&instant}}
-				</b></span></a>
+					<b>Netflix</b>
+				</span></a>
 			</div>
 			{{/netflix}}
 			<div style="clear: both;"></div>

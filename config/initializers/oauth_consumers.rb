@@ -5,8 +5,8 @@
 #
 OAUTH_CREDENTIALS={
   :netflix => {
-    :key => "5gpnh74hze59nmfw3ksuu3zy",
-    :secret => "crhjvJn7HW",
+    :key => ENV['NETFLIX_CONSUMER_KEY'],
+    :secret => ENV['NETFLIX_SECRET_KEY'],
     :expose => true,
     :options => {
       :site => "http://api.netflix.com",
