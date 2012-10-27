@@ -4,12 +4,16 @@
 jQuery ->
 	$curtainopen = true;
 	
+	$("#search_form").submit(-> search())
+	
 	$("#search_query").keyup (e) ->
 		if e.keyCode == 13
 			search()
+			false
 	
 	$("#search_submit")
 		.click(-> search())
+		false
 		
 	search = ->
 		if validate()
@@ -59,7 +63,7 @@ jQuery ->
 		# src = new EventSource($("#search_form").attr('action')+encodeURI($("#search_query").val()));
 		# src.onmessage ->
 		# 	$("#search_form").append("\n" + e.data)
-		$.ajax $("#search_form").attr('action')+encodeURI($("#search_query").val()),
+		$.ajax $("#search_form").attr('action')+encodeURI("?search_query="+$("#search_query").val()),
 			type: 'GET'
 			dataType: 'jsonp'
 			success: (data) ->
