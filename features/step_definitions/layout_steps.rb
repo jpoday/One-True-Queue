@@ -18,6 +18,10 @@ Then /^I should not see "([^"]*)"$/ do |text|
   end
 end
 
+When /^I follow "([^"]*)"$/ do |link|
+  click_link "#{link}"
+end
+
 When /^I press "([^"]*)"$/ do |button|
   click_button "#{button}"
 end

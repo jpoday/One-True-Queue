@@ -1,5 +1,4 @@
 Onetrue::Application.routes.draw do
-  get "search" => "pages#search"
   resources :oauth_consumers do
     member do
       get :callback
@@ -12,7 +11,7 @@ Onetrue::Application.routes.draw do
   get "signup" => "users#new", :as => "signup"
   resources :users
   resources :sessions
-  root :to => "pages#home"
+  root :to => "pages#search"
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

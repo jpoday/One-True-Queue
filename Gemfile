@@ -1,7 +1,6 @@
 source 'http://rubygems.org'
-source 'http://gemcutter.org'
 
-gem 'rails', '3.2.0'
+gem 'rails', '3.2.12'
 
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
@@ -13,9 +12,9 @@ gem 'pg', :group => :production
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem 'sass-rails', "  ~> 3.2.0"
-  gem 'coffee-rails', "~> 3.2.0"
-  gem 'uglifier'
+  gem 'sass-rails',   '~> 3.2.3'
+  gem 'coffee-rails', '~> 3.2.1'
+  gem 'uglifier', '>= 1.0.3'
   gem 'bootstrap-sass', '~> 2.0.2'
   gem 'compass-rails'
 end
@@ -32,7 +31,7 @@ group :development, :test do
   gem 'ruby-debug19', :require => 'ruby-debug'
   gem 'rspec'
   gem 'rspec-rails'
-	gem 'cucumber-rails', ">= 0.7.2"
+  gem 'cucumber-rails', ">= 0.7.2", :require => false
 	gem 'database_cleaner', ">= 0.5.2"
 	gem 'launchy'
 	gem 'spork', '> 0.9.0.rc'
@@ -51,11 +50,10 @@ group :development do
 end
 
 group :test do
-  # Pretty printed test output
-  gem 'turn', '< 0.8.3', :require => false
+
 end
 
-gem 'sorcery', '>=0.7.13'
+gem 'sorcery', '>=0.8.1'
 gem 'oauth', :git => "git://github.com/jpoday/oauth-ruby"
 gem 'oauth-plugin', '>= 0.4.0.pre1'
 gem 'simple_form'

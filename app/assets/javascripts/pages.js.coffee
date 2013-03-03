@@ -6,11 +6,6 @@ jQuery ->
 	
 	$("#search_form").submit(-> search())
 	
-	$("#search_query").keyup (e) ->
-		if e.keyCode == 13
-			search()
-			false
-	
 	$("#search_submit")
 		.click(-> search())
 		false
@@ -55,7 +50,7 @@ jQuery ->
 		else
 			$(".leftcurtain").stop().animate({width:'50%'}, 2000 )
 			$(".rightcurtain").stop().animate({width:'51%'}, 2000 )
-			$(".sign").stop().animate({left: "51%"}, 2500, "swing" )
+			$(".sign").stop().animate({left: "50%"}, 2500, "swing" )
 			$curtainopen = false
 		false;
 		

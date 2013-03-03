@@ -18,4 +18,4 @@ Feature: Sign Up
 		When I don't fill in the user form
 		And I press "Sign Up!"
 		Then my account should not exist
-		And I should see "Invalid Fields"
+		And I should see "can't be blank"

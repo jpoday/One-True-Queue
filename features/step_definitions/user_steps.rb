@@ -1,5 +1,5 @@
 Given /^that I'm a user$/ do
-  @user = Factory(:user)
+  @user = FactoryGirl.create(:user)
 end
 
 Given /I'm signed in/ do
@@ -18,17 +18,17 @@ Given /^I visit the signup page$/ do
 end
 
 When /^I fill in the user form$/ do
-  fill_in "Name",                  :with => "example"
-  fill_in "Email",                 :with => "user@example.com"
-  fill_in "Password",              :with => "foobarbaz"
-  fill_in "Password confirmation", :with => "foobarbaz"
+  fill_in "user_name",                  :with => "example"
+  fill_in "user_email",                 :with => "user@example.com"
+  fill_in "user_password",              :with => "foobarbaz"
+  fill_in "user_password_confirmation", :with => "foobarbaz"
 end
 
 When /^I don't fill in the user form$/ do
-  fill_in "Name",                  :with => ""
-  fill_in "Email",                 :with => ""
-  fill_in "Password",              :with => ""
-  fill_in "Password confirmation", :with => ""
+  fill_in "user_name",                  :with => ""
+  fill_in "user_email",                 :with => ""
+  fill_in "user_password",              :with => ""
+  fill_in "user_password_confirmation", :with => ""
 end
 
 When /^I sign in without filling in the form$/ do
@@ -44,7 +44,7 @@ end
 
 Then /^my account should exist$/ do
   @user = User.find_by_email("user@example.com")
-  @user.should be_valid
+  @user.should_not be_nil
 end
 
 Then /^my account should not exist$/ do
