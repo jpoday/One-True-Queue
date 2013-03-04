@@ -4,6 +4,13 @@
 jQuery ->
 	$curtainopen = true;
 	
+	window.onload = (e) ->
+		if (!history.state || !history.state.data) 
+			return
+		else
+			clearHome()
+			render(history.state.data,true)
+	
 	$("#search_form").submit(-> search())
 	
 	$("#search_submit")
@@ -16,6 +23,7 @@ jQuery ->
 			curtain()
 			clearHome()
 			request()
+			curtain()
 		else
 			false
 		
@@ -50,7 +58,7 @@ jQuery ->
 		else
 			$(".leftcurtain").stop().animate({width:'50%'}, 2000 )
 			$(".rightcurtain").stop().animate({width:'51%'}, 2000 )
-			$(".sign").stop().animate({left: "50%"}, 2500, "swing" )
+			$(".sign").stop().animate({left: "51%"}, 2500, "swing" )
 			$curtainopen = false
 		false;
 		
@@ -62,21 +70,16 @@ jQuery ->
 			type: 'GET'
 			dataType: 'jsonp'
 			success: (data) ->
-				render data
+				history.replaceState({data: data}, null, window.location.href.split('#')[0]+'#'+$("#search_query").val())
+				render(data,false)
 		false
 		
-	render = (data) ->
+	render = (data, reload) ->
 		if data['TopResult']
 			$("#top_result").append Mustache.to_html($('#top_result_template').html(), data['TopResult'])
-			curtain()
-			$("#top_result").fadeIn(2000)
 		
 		if data['MixedResults']
 			$("#mixed_results").append Mustache.to_html($('#mixed_results_template').html(), data['MixedResults'])
-			curtain()
-			$("#mixed_results").fadeIn(2000)
-				
-		$("#search_form").fadeIn(2000)
 		
 		for result,i in data['Amazon']
 			if i<3
@@ -86,7 +89,6 @@ jQuery ->
 			result.n = n
 			result.service = "Amazon"
 			$("#col1").append Mustache.to_html($('#result_template').html(), result)
-			$(".result").fadeIn(2000)
 		
 		if data['Hulu'].length
 			for result,i in data['Hulu']
@@ -97,10 +99,8 @@ jQuery ->
 				result.n = n
 				result.service = "Hulu"
 				$("#col2").append Mustache.to_html($('#result_template').html(), result)
-				$(".result").fadeIn(2000)
 		else
 			$("#col2").append Mustache.to_html($('#empty_template').html(), {service: "Hulu"})
-			$(".result").fadeIn(2000)
 		
 		for result,i in data['Itunes']
 			if i<3
@@ -110,7 +110,6 @@ jQuery ->
 			result.n = n
 			result.service = "iTunes"
 			$("#col3").append Mustache.to_html($('#result_template').html(), result)
-			$(".result").fadeIn(2000)
 		
 		if data['Netflix'].length
 			for result,i in data['Netflix']
@@ -120,7 +119,21 @@ jQuery ->
 					n = "n"
 				result.n = n
 				$("#col4").append Mustache.to_html($('#netflix_template').html(), result)
-				$(".result").fadeIn(2000)
 		else
 			$("#col4").append Mustache.to_html($('#empty_template').html(), {service: "Netflix"})
+		
+		
+		if reload
+			$("#search_form").show()
+			if data['TopResult']
+				$("#top_result").show()
+			if data['MixedResults']
+				$("#mixed_results").show()
+			$(".result").show()
+		else
+			$("#search_form").fadeIn(2000)
+			if data['TopResult']
+				$("#top_result").fadeIn(2000)
+			if data['MixedResults']
+				$("#mixed_results").fadeIn(2000)
 			$(".result").fadeIn(2000)
