@@ -23,7 +23,6 @@ jQuery ->
 			curtain()
 			clearHome()
 			request()
-			curtain()
 		else
 			false
 		
@@ -133,6 +132,7 @@ jQuery ->
 				$("#mixed_results").show()
 			$(".result").show()
 		else #show for the first time
+			curtain()
 			$("#search_form").fadeIn(2000)
 			if data['TopResult']
 				$("#top_result").fadeIn(2000)
