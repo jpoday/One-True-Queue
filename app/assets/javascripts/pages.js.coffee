@@ -69,9 +69,12 @@ jQuery ->
 		$.ajax $("#search_form").attr('action')+encodeURI("?search_query="+$("#search_query").val()),
 			type: 'GET'
 			dataType: 'jsonp'
+			timeout: 10000
 			success: (data) ->
 				history.replaceState({data: data}, null, window.location.href.split('#')[0]+'#'+$("#search_query").val())
 				render(data,false)
+			error: (x, t, m) ->
+				displayError()
 		false
 		
 	render = (data, reload) ->
@@ -122,18 +125,20 @@ jQuery ->
 		else
 			$("#col4").append Mustache.to_html($('#empty_template').html(), {service: "Netflix"})
 		
-		
-		if reload
+		if reload #show right away on "back button"
 			$("#search_form").show()
 			if data['TopResult']
 				$("#top_result").show()
 			if data['MixedResults']
 				$("#mixed_results").show()
 			$(".result").show()
-		else
+		else #show for the first time
 			$("#search_form").fadeIn(2000)
 			if data['TopResult']
 				$("#top_result").fadeIn(2000)
 			if data['MixedResults']
 				$("#mixed_results").fadeIn(2000)
 			$(".result").fadeIn(2000)
+			
+	displayError = ->
+		$("#search_error").show()

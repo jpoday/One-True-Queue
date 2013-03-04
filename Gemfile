@@ -39,6 +39,7 @@ group :development, :test do
 	gem 'guard-livereload'
 	gem 'guard-cucumber'
 	gem 'guard-spork'
+	gem 'rb-fsevent', '~> 0.9'
 	gem 'factory_girl_rails'
 	gem 'capybara-webkit'
 	gem 'pry'

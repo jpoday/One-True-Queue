@@ -209,6 +209,18 @@
 			}
 		}
 	}
+	#search_error {
+		display: none;
+		height: 310px;
+		border: 1px solid black;
+		background: #fff url(image_path('error-background.jpg')) repeat-x;
+		.error_desc {
+			text-align: center;
+			h2 {
+				margin-top: -25px;
+			}
+		}
+	}
 }
 
 #column-seating {
