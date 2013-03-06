@@ -65,9 +65,11 @@ jQuery ->
 		# src = new EventSource($("#search_form").attr('action')+encodeURI($("#search_query").val()));
 		# src.onmessage ->
 		# 	$("#search_form").append("\n" + e.data)
-		$.ajax $("#search_form").attr('action')+encodeURI("?search_query="+$("#search_query").val()),
+		$.jsonp
+			url: $("#search_form").attr('action')+encodeURI("?search_query="+$("#search_query").val())
 			type: 'GET'
-			dataType: 'jsonp'
+			dataType: "jsonp"
+			callbackParameter: "callback"
 			timeout: 10000
 			success: (data) ->
 				history.replaceState({data: data}, null, window.location.href.split('#')[0]+'#'+$("#search_query").val())
@@ -142,3 +144,4 @@ jQuery ->
 			
 	displayError = ->
 		$("#search_error").show()
+		curtain()

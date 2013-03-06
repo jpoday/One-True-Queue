@@ -8,4 +8,5 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require mustache
+//= require jquery.jsonp
 //= require_tree .
